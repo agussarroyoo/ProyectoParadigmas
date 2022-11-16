@@ -17,6 +17,8 @@ private:
 public:
 	ConsumoElectrico();
 	ConsumoElectrico(short dia,short mes,short anio,float medicion);
+	Fecha getFecha();
+	float getMedicion();
 	virtual ~ConsumoElectrico();
 	ConsumoElectrico(const ConsumoElectrico &other);
 };

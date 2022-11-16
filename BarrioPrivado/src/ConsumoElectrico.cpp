@@ -23,6 +23,13 @@ ConsumoElectrico::~ConsumoElectrico() {
 	// TODO Auto-generated destructor stub
 }
 
+Fecha ConsumoElectrico:: getFecha(){
+	return this->fecha;
+}
+float ConsumoElectrico::getMedicion() {
+	return this->medicion;
+}
+
 ConsumoElectrico::ConsumoElectrico(const ConsumoElectrico &other) {
 	// TODO Auto-generated constructor stub
 	this->medicion=other.medicion;

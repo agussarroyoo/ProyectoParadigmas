@@ -60,6 +60,31 @@ bool Privado::comprobarHabitante(Persona p){
 	return aux;
 }
 
+float Privado::calcularExpensa(short mes) {
+	float aux = 0;
+	for (unsigned int i= 0; i < this->consumos.size(); i++) {
+		if (this->consumos[i]->getFecha().getMes() == mes) {
+			aux = aux + this->consumos[i]->getMedicion();
+		}
+	}
+	for (unsigned int i = 0; i<this->contrataciones.size(); i++) {
+		if (this->contrataciones[i]->getFecha().getMes() == mes) {
+					aux = aux + this->contrataciones[i]->getCosto();
+		}
+	}
+	return aux + this->calcularBonificacion(mes);
+
+}
+
+float Privado::calcularBonificacion(short mes) {
+	float aux = 0;
+	for (unsigned int i = 0; i < this->reservas.size(); i++) {
+		if (this->reservas[i]->getFecha().getMes() == mes) {
+			aux = aux + this->reservas[i]->getPrecio() * 0.05;
+		}
+	}
+	return aux;
+}
 Privado::~Privado() {
 	// TODO Auto-generated destructor stub
 }

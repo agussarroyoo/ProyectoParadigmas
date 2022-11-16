@@ -31,6 +31,8 @@ private:
 public:
 	Contratacion(string empresa,TipoServicio tipo_servicio,short dia,short mes,short anio, float costo);
 	Contratacion();
+	Fecha getFecha();
+	float getCosto();
 	Contratacion(Contratacion &copia);
 	virtual ~Contratacion();
 };

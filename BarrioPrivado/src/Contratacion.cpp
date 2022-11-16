@@ -28,6 +28,13 @@ Contratacion::Contratacion(Contratacion &copia){
 	this->fecha=copia.fecha;
 }
 
+Fecha Contratacion::getFecha() {
+	return this->fecha;
+}
+
+float Contratacion::getCosto() {
+	return this->costo;
+}
 //destructor
 Contratacion::~Contratacion() {
 	// TODO Auto-generated destructor stub

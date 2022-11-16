@@ -11,15 +11,14 @@ Contratacion::Contratacion() {
 	// TODO Auto-generated constructor stub
 	this->costo=0;
 	this->empresa="";
-	this->fecha;
+	this->fecha.setFechaActual();
 	this->tipo_servicio=salud;
 }
 //constructor sobrecargado
-Contratacion::Contratacion(string empresa, TipoServicio tipo_servicio,short dia,short mes,short anio, float costo){
+Contratacion::Contratacion(string empresa, TipoServicio tipo_servicio,short dia,short mes,short anio, float costo):fecha(dia,mes,anio){
 	this->empresa=empresa;
 	this->tipo_servicio=tipo_servicio;
 	this->costo=costo;
-	this->fecha(dia,mes,anio);
 }
 //constructor copia
 Contratacion::Contratacion(Contratacion &copia){

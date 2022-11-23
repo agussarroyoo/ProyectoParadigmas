@@ -7,9 +7,11 @@
 
 #ifndef CONTRATACION_H_
 #define CONTRATACION_H_
+
 #include "Fecha.h"
 #include <iostream>
 using namespace std;
+
 enum TipoServicio{
 	seguridad,
 	recoleccionBasura,
@@ -21,8 +23,8 @@ enum TipoServicio{
 	salud,
 	entretenimiento
 };
+
 class Contratacion {
-//inicio de la clase contratacion
 private:
 	string empresa;
 	TipoServicio tipo_servicio;
@@ -31,9 +33,13 @@ private:
 public:
 	Contratacion(string empresa,TipoServicio tipo_servicio,short dia,short mes,short anio, float costo);
 	Contratacion();
+	Contratacion(Contratacion &copia);
+
 	Fecha getFecha();
 	float getCosto();
-	Contratacion(Contratacion &copia);
+
+	void listarInfo();
+
 	virtual ~Contratacion();
 };
 #endif /* CONTRATACION_H_ */

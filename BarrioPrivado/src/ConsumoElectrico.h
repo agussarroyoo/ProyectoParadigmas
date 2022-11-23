@@ -10,17 +10,22 @@
 #include "Fecha.h"
 
 class ConsumoElectrico {
-	//inicio de consumo electrico
 private:
 	float medicion;
 	Fecha fecha;
+	float monto;
 public:
 	ConsumoElectrico();
-	ConsumoElectrico(short dia,short mes,short anio,float medicion);
+	ConsumoElectrico(short dia,short mes,short anio,float medicion, float monto);
+	ConsumoElectrico(const ConsumoElectrico &other);
+
 	Fecha getFecha();
 	float getMedicion();
+	float getMonto();
+
+	void listarInfo();
+
 	virtual ~ConsumoElectrico();
-	ConsumoElectrico(const ConsumoElectrico &other);
 };
 
 #endif /* CONSUMOELECTRICO_H_ */

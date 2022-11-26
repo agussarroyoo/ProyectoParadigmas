@@ -41,11 +41,11 @@ bool Privado::comprobarHabitante(Persona p){
 //Crea la expensa recibiendo desde Sistema el monto de los servicios contratados en ese mes
 void Privado::crearExpensa(short mes,float servicios){
 
-	float monto = servicios * (this->area / this->sumaArea ) + this->consumoMes(mes) + this->calcularBonificacion(mes);
+	float monto = servicios * this->getPorcentajeArea() + this->consumoMes(mes) + this->calcularBonificacion(mes);
 
-	Expensa nueva(mes, monto);
-	this->agregarExpensa(&nueva);
-	this->listarExpensa(nueva, servicios);
+	Expensa *nueva = new Expensa(mes, monto);
+	this->agregarExpensa(nueva);
+	this->listarExpensa(*nueva, servicios);
 }
 
 void Privado::agregarExpensa(Expensa *e) {
@@ -63,23 +63,29 @@ void Privado::expensaMes(int mes, float servicios) {
 
 //Recibe una Expensa y la lista
 void Privado::listarExpensa(Expensa e, float servicios) {
+		cout << "  -------------------------------------------" << endl;
 		cout<<"                              EXPENSA: "<<e.getNroExpensa()<<endl;
-		cout << "  -------------------------------------------" << endl;
 	 	cout <<"LOTE: " <<this->getNLote()<<"                 Mes de facturacion: "<< e.getMes()<<endl;
-		cout << "  -------------------------------------------" << endl<< endl;
-		cout << "  En concepto de:" << endl;
-		cout << "  -------------------------------------------" << endl;
-		cout << "     Servicios ------------------------------ $" << servicios << endl;
-		cout << "                   " ;
-		cout << "     Reservas" << endl;
-		cout << "                   -" ;
+		cout << "" << endl<< endl;
+		cout << "En concepto de:" << endl;
+		cout << " " << endl;
+		cout << "SERVICIOS .............................. $" << servicios * this->getPorcentajeArea() << endl;
+		cout << "                   "<<endl ;
+		cout << "RESERVAS" << endl;
+		cout << "-------------------------------"<<endl;
+		cout << " " <<endl ;
 		this->infoReservas(e.getMes());
-		cout << "  -------------------------------------------" << endl;
-		cout << "     Consumo Electrico" << endl;
-		cout << "                   -" ;
+		cout << "...................................A pagar: $" << this->calcularBonificacion(e.getMes())<<endl<<endl;
+		cout << "-------------------------------"<<endl;
+
+		cout << " " <<endl;
+		cout << "CONSUMO ELECTRICO" << endl;
+		cout << "-------------------------------"<<endl;
+		cout << " " <<endl ;
 		this->infoConsumo(e.getMes());
-		cout << "  -------------------------------------------" << endl;
-		cout << "  Total a pagar ....... $ " << e.getMonto()<< endl;
+		cout << " " <<endl ;
+		cout << "-------------------------------"<<endl<<endl;
+		cout << "                                  Total a pagar ....... $ " << e.getMonto()<< endl;
 }
 
 //Devuelve el monto del Consumo Electrico correspondiente al mes
@@ -116,6 +122,8 @@ void Privado::infoReservas(int mes) {
 	for (unsigned int i = 0; i < this->reservas.size(); i++) {
 		if (this->reservas[i]->getFecha().getMes() == mes) {
 			this->reservas[i]->listarInfo();
+			cout << " " <<endl;
+
 		}
 	}
 }

@@ -18,6 +18,7 @@ Fecha Reserva::getFecha() {
 
 void Reserva::listarInfo() {
 	cout<<"Fecha: " << this->fecha.toString()<<endl;
+	cout <<"Lote Reservado: " << this->lote_reservado->getNLote()<<endl;
 	cout<<"Reservante: " << this->reservante->getNombre()<<endl;
-	cout<<"Precio: $" << this->precio<<endl;
+	cout<<"....................... Precio: $" << this->precio<<endl;
 }

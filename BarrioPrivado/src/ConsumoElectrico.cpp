@@ -32,7 +32,7 @@ float ConsumoElectrico::getMonto() {
 void ConsumoElectrico::listarInfo() {
 	cout<< "Fecha: " << this->fecha.toString()<<endl;
 	cout<< "Medicion: " << this->medicion<<endl;
-	cout<< "Monto: $" << this->monto<<endl;
+	cout<< "................................... Monto: $" << this->monto<<endl;
 }
 ConsumoElectrico::ConsumoElectrico(const ConsumoElectrico &other) {
 	// TODO Auto-generated constructor stub

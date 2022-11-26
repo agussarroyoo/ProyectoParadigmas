@@ -129,10 +129,23 @@ int main() {
 
 	Fecha Fecha1 = Fecha();
 
-
+	S.agregarReserva(1, Fecha1, 13, 17, 12000, Hab3_1, 4);
+	S.agregarReserva(2, Fecha1, 15, 20, 8000, Hab1_2, 6);
 
 	Fecha Fecha2(10,11,2022);
 
+	S.agregarReserva(1, Fecha2, 13, 17, 12000, Hab2_1, 4);
+
+	cout << " " <<endl;
+
+	cout << "Reservas Lote 1" <<endl;
+	S.infoReservas(1, 11);
+	cout << "Reservas Lote 2" << endl;
+	S.infoReservas(2, 11);
+
+	cout << " " <<endl;
+	cout << "Emitimos la Expensa correspondiente al mes 11, una vez creada se la lista" <<endl;
+	S.emitirExpensa(1, 11);
 
 
 	return 0;

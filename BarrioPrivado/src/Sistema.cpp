@@ -113,9 +113,9 @@ void Sistema::agregarConsumoElectrico(int nLote, short dia,short mes,short anio,
 void Sistema::agregarReserva(int nLote,Fecha fecha, int horaInicio, int horaFin, float precio, Persona *reservante, int nroLoteReserv){
 	for (unsigned int i = 0; i < this->lotesP.size(); i++){
 			if (this->lotesP[i]->getNLote() == nLote){
-				for (unsigned int i=0 ; i < this->lotesC.size(); i++) {
-					if (this->lotesC[i]->getNLote() == nroLoteReserv) {
-						this->lotesP[i]->agregarReserva(fecha, horaInicio, horaFin, precio, reservante, this->lotesC[i]);
+				for (unsigned int j=0 ; j < this->lotesC.size(); j++) {
+					if (this->lotesC[j]->getNLote() == nroLoteReserv) {
+						this->lotesP[i]->agregarReserva(fecha, horaInicio, horaFin, precio, reservante, this->lotesC[j]);
 					}
 				}
 			}

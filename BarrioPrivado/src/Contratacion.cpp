@@ -34,7 +34,7 @@ float Contratacion::getCosto() {
 }
 
 void Contratacion::listarInfo() {
-	cout <<"Servicio: " << this->tipo_servicio<<endl;
+	cout <<"Servicio: " << this->tipo_servicio <<endl; ;
 	cout << "Fecha: " << this->fecha.toString()<<endl;
 	cout << "Empresa: " << this->empresa<<endl;
 	cout << "Costo: $" << this->costo<<endl;

@@ -26,6 +26,7 @@ class Reserva
 
 		void listarInfo();
 
+		virtual ~Reserva(){};
 };
 
 #endif

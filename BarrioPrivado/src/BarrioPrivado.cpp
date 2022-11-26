@@ -158,7 +158,7 @@ int main() {
 	cout << "La relistamos" <<endl<<endl;
 	S.listarExpensa(1, 11);
 
-
+	S.~Sistema();
 
 
 	return 0;

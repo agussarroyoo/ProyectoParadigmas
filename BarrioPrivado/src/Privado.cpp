@@ -71,11 +71,16 @@ bool Privado::existeExpensa(int mes) {
 
 //Lista la Expensa de determinado mes
 void Privado::expensaMes(int mes, float servicios) {
-	for (unsigned int i = 0; i<this->expensas.size(); i++) {
-		if (this->expensas[i]->getMes() == mes) {
-			this->listarExpensa(*this->expensas[i], servicios);
+	if (existeExpensa(mes)) {
+		for (unsigned int i = 0; i<this->expensas.size(); i++) {
+			if (this->expensas[i]->getMes() == mes) {
+				this->listarExpensa(*this->expensas[i], servicios);
+			}
 		}
+	} else {
+		cout << "No se emitio una expensa correspondiente al mes "<<mes <<endl;
 	}
+
 }
 
 void Privado::pagarExpensa(int mes) {
@@ -136,7 +141,7 @@ float Privado::consumoMes(int mes) {
 				return this->consumos[i]->getMonto();
 			}
 		}
-	return 0;
+	return indefinido;
 }
 
 
@@ -180,6 +185,21 @@ void Privado::infoPropietarios() {
 	}
 }
 Privado::~Privado() {
-	// TODO Auto-generated destructor stub
+	for (unsigned int i = 0; i<this->consumos.size(); i++) {
+		delete this->consumos[i];
+	}
+	this->consumos.clear();
+
+	for (unsigned int i = 0; i < this->reservas.size(); i++) {
+		delete this->reservas[i];
+	}
+	this->reservas.clear();
+
+	for (unsigned int i = 0; i < this->expensas.size(); i++) {
+		delete this->expensas[i];
+	}
+	this->expensas.clear();
+
+
 }
 

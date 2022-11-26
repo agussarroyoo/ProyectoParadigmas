@@ -167,6 +167,15 @@ void Sistema::infoReservas(int nLote,int mes) {
 
 
 Sistema::~Sistema() {
-	// TODO Auto-generated destructor stub
+	for (unsigned int i=0; i<this->lotesC.size(); i++) {
+		delete this->lotesC[i];
+	}
+	this->lotesC.clear();
+
+	for (unsigned int i=0; i<this->lotesP.size(); i++) {
+		delete this->lotesP[i];
+	}
+	this->lotesP.clear();
+
 }
 

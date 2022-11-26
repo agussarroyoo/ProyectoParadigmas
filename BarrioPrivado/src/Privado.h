@@ -18,27 +18,30 @@ private:
 	vector<Persona *> habitantes;
 	vector<Persona *> propietarios;
 	vector<Reserva *> reservas;
+
+	bool existeExpensa(int mes) ;
+	bool comprobarHabitante(Persona p);
+	float calcularBonificacion(short mes);
+	float consumoMes(int mes);
+	void agregarExpensa(Expensa *e);
+	void listarExpensa(Expensa e, float servicios) ;
+
+
 public:
 	Privado();
 	Privado(float area);
 
 	void crearExpensa(short mes,float servicios);
-
-	float calcularBonificacion(short mes);
-	float consumoMes(int mes);
+	void expensaMes(int mes, float servicios) ;
+	void pagarExpensa(int mes);
 
 	void agregarConsumoElectrico(short dia,short mes,short anio,float medicion, float monto);
 	void agregarReserva(Fecha fecha, int horaInicio, int horaFin, float precio, Persona *reservante, Lote *loteReservado);
 	void agregarHabitante(Persona *p);
 	void agregarPropietario(Persona *p);
-	void agregarExpensa(Expensa *e);
-	bool comprobarHabitante(Persona p);
 
 	void infoConsumo(int mes);
 	void infoReservas(int mes);
-	void expensaMes(int mes, float servicios) ;
-	void listarExpensa(Expensa e, float servicios) ;
-
 	void infoHabitantes();
 	void infoPropietarios();
 

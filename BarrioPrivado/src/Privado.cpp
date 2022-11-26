@@ -17,7 +17,11 @@ void Privado::agregarConsumoElectrico(short dia,short mes,short anio,float medic
 
 
 void Privado::agregarReserva(Fecha fecha, int horaInicio, int horaFin, float precio, Persona *reservante, Lote *loteReservado){
-	this->reservas.insert(this->reservas.end(), new Reserva(fecha,  horaInicio,  horaFin,  precio,  reservante,  loteReservado));
+	if (comprobarHabitante(*reservante)) {
+		this->reservas.insert(this->reservas.end(), new Reserva(fecha,  horaInicio,  horaFin,  precio,  reservante,  loteReservado));
+	} else {
+		cout << "El reservante no es habitante de este lote."<<endl;
+	}
 }
 void Privado::agregarHabitante(Persona *p){
 	this->habitantes.insert(this->habitantes.end(), p);
@@ -27,30 +31,43 @@ void Privado::agregarPropietario(Persona *p){
 
 }
 
+void Privado::agregarExpensa(Expensa *e) {
+	this->expensas.insert(this->expensas.end(), e);
+}
+
 //Comprueba si la Persona p pertenece a los Habitantes del Lote
 bool Privado::comprobarHabitante(Persona p){
-	bool aux = false;
 	for (unsigned int i = 0; i < this->habitantes.size(); i++) {
 		if ( this->habitantes[i]->getDni() == p.getDni()) {
 			return true;
 		}
 	}
-	return aux;
+	return false;
 }
 
 //Crea la expensa recibiendo desde Sistema el monto de los servicios contratados en ese mes
 void Privado::crearExpensa(short mes,float servicios){
+	if (existeExpensa(mes)) {
+		cout << "La expensa correspondiente al mes " << mes << " ya fue emitida" << endl;
+	} else {
+		float monto = servicios * this->getPorcentajeArea() + this->consumoMes(mes) + this->calcularBonificacion(mes);
+		Expensa *nueva = new Expensa(mes, monto);
+		this->agregarExpensa(nueva);
+		this->listarExpensa(*nueva, servicios);
+	}
 
-	float monto = servicios * this->getPorcentajeArea() + this->consumoMes(mes) + this->calcularBonificacion(mes);
-
-	Expensa *nueva = new Expensa(mes, monto);
-	this->agregarExpensa(nueva);
-	this->listarExpensa(*nueva, servicios);
 }
 
-void Privado::agregarExpensa(Expensa *e) {
-	this->expensas.insert(this->expensas.end(), e);
+//Controla si ya existe una expensa creada en dicho mes
+bool Privado::existeExpensa(int mes) {
+	for (unsigned int i = 0; i < this->expensas.size(); i++) {
+			if (this->expensas[i]->getMes() == mes) {
+				return true;
+			}
+		}
+	return false;
 }
+
 
 //Lista la Expensa de determinado mes
 void Privado::expensaMes(int mes, float servicios) {
@@ -58,6 +75,24 @@ void Privado::expensaMes(int mes, float servicios) {
 		if (this->expensas[i]->getMes() == mes) {
 			this->listarExpensa(*this->expensas[i], servicios);
 		}
+	}
+}
+
+void Privado::pagarExpensa(int mes) {
+	if (existeExpensa(mes)) {
+		for (unsigned int i = 0; i < this->expensas.size(); i++) {
+			if (this->expensas[i]->getMes() == mes) {
+				if (this->expensas[i]->isPagado()) {
+					cout << "La expensa del mes " << mes << " ya había sido pagada"<<endl;
+				} else {
+					this->expensas[i]->fuePagada();
+					cout << "Expensa pagada" << endl;
+				}
+
+			}
+		}
+	} else {
+		cout << "No se emitio una expensa correspondiente al mes " << mes <<endl;
 	}
 }
 
@@ -85,7 +120,13 @@ void Privado::listarExpensa(Expensa e, float servicios) {
 		this->infoConsumo(e.getMes());
 		cout << " " <<endl ;
 		cout << "-------------------------------"<<endl<<endl;
-		cout << "                                  Total a pagar ....... $ " << e.getMonto()<< endl;
+		cout << "                                Total ....... $ " << e.getMonto()<< endl<<endl;
+
+		if (e.isPagado()) {
+			cout << "-------------------ESTADO: PAGADA-------------------" << endl;
+		} else {
+			cout << "-------------------ESTADO: IMPAGADA-------------------" << endl;
+		}
 }
 
 //Devuelve el monto del Consumo Electrico correspondiente al mes

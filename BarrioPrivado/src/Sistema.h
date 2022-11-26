@@ -43,6 +43,7 @@ public:
 	void agregarHabitante(int nroLote, Persona *p);
 	void agregarPropietario(int nroLote, Persona *p);
 	void emitirExpensa(int nroLote, int mes);
+	void pagarExpensa(int nroLote, int mes);
 	void listarExpensa(int nroLote, int mes);
 	void infoConsumo(int nLote,int mes);
 	void infoReservas(int nLote,int mes);

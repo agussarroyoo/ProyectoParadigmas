@@ -102,6 +102,8 @@ int main() {
 	cout << "--HABITANTES--" <<endl;
 	S.infoHabitantes();
 
+	cout << " " <<endl;
+
 	cout << "--PROPIETARIOS--" <<endl;
 	S.infoPropietarios();
 
@@ -138,14 +140,25 @@ int main() {
 
 	cout << " " <<endl;
 
-	cout << "Reservas Lote 1" <<endl;
+	cout << "--Reservas Lote 1--" <<endl;
 	S.infoReservas(1, 11);
-	cout << "Reservas Lote 2" << endl;
+	cout << "--Reservas Lote 2--" << endl;
 	S.infoReservas(2, 11);
 
 	cout << " " <<endl;
-	cout << "Emitimos la Expensa correspondiente al mes 11, una vez creada se la lista" <<endl;
+	cout << "Emitimos la Expensa correspondiente al mes 11, una vez creada se lista" <<endl<<endl;
+
 	S.emitirExpensa(1, 11);
+
+	cout << "Marcamos como paga la expensa" <<endl<<endl;
+	S.pagarExpensa(1, 11);
+
+	cout << " " <<endl;
+
+	cout << "La relistamos" <<endl<<endl;
+	S.listarExpensa(1, 11);
+
+
 
 
 	return 0;

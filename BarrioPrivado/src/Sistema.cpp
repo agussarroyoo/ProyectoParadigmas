@@ -24,6 +24,8 @@ void Sistema::listarLotes(){
 		this->lotesP[i]->listarInfo();
 	}
 
+	cout << " " <<endl;
+
 	cout << "-----LOTES COMUNITARIOS-----"<<endl;
 	for(unsigned int i = 0; i<this->lotesC.size();i++) {
 			this->lotesC[i]->listarInfo();
@@ -130,6 +132,13 @@ void Sistema::emitirExpensa(int nroLote, int mes) {
 	}
 }
 
+void Sistema::pagarExpensa(int nroLote, int mes) {
+	for(unsigned int i = 0; i < this->lotesP.size(); i++) {
+			if (this->lotesP[i]->getNLote() == nroLote) {
+				 this->lotesP[i]->pagarExpensa(mes);
+			}
+		}
+}
 void Sistema::listarExpensa(int nroLote, int mes) {
 	for(unsigned int i = 0; i < this->lotesP.size(); i++) {
 			if (this->lotesP[i]->getNLote() == nroLote) {
@@ -144,7 +153,9 @@ void Sistema::infoConsumo(int nLote,int mes) {
 			this->lotesP[i]->infoConsumo(mes);
 		}
 	}
+
 }
+
 
 void Sistema::infoReservas(int nLote,int mes) {
 	for(unsigned int i = 0; i < this->lotesP.size(); i++) {

@@ -9,17 +9,19 @@ using namespace std;
 class Persona
 {
 	private:
+		const int indefinido = -999;
 		string nombre;
 		int dni;
 		
 	public:
 		Persona();
-		Persona(string nom, int _dni);
-		Persona(Persona *per);
-	int getDni() const;
-	void setDni(int dni);
-	const string& getNombre() const;
-	void setNombre(const string &nombre);
+		Persona(string nombre, int dni);
+		Persona(Persona &per);
+
+		void toString();
+
+		int getDni() const;
+		const string& getNombre() const;
 };
 
 #endif

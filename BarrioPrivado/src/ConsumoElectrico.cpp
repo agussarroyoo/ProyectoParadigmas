@@ -7,20 +7,16 @@
 
 #include "ConsumoElectrico.h"
 
-//inicio de constructor por defecto
 ConsumoElectrico::ConsumoElectrico() {
-	// TODO Auto-generated constructor stub
 	this->fecha.setFechaActual();
-	this->medicion=0;
+	this->medicion=indefinido;
+	this->monto = indefinido;
 }
-//inicio de constructor sobrecargado
-ConsumoElectrico::ConsumoElectrico(short dia,short mes,short anio,float medicion) {
-	// TODO Auto-generated constructor stub
+
+ConsumoElectrico::ConsumoElectrico(short dia,short mes,short anio,float medicion,float monto) {
 	this->fecha=Fecha(dia,mes,anio);
 	this->medicion=medicion;
-}
-ConsumoElectrico::~ConsumoElectrico() {
-	// TODO Auto-generated destructor stub
+	this->monto = monto;
 }
 
 Fecha ConsumoElectrico:: getFecha(){
@@ -29,9 +25,20 @@ Fecha ConsumoElectrico:: getFecha(){
 float ConsumoElectrico::getMedicion() {
 	return this->medicion;
 }
+float ConsumoElectrico::getMonto() {
+	return this->monto;
+}
 
+void ConsumoElectrico::listarInfo() {
+	cout<< "Fecha: " << this->fecha.toString()<<endl;
+	cout<< "Medicion: " << this->medicion<<endl;
+	cout<< "Monto: $" << this->monto<<endl;
+}
 ConsumoElectrico::ConsumoElectrico(const ConsumoElectrico &other) {
 	// TODO Auto-generated constructor stub
 	this->medicion=other.medicion;
 	this->fecha=other.fecha;
+	this->monto = other.monto;
+}
+ConsumoElectrico::~ConsumoElectrico() {
 }

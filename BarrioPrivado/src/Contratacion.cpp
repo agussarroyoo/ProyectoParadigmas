@@ -6,21 +6,18 @@
  */
 
 #include "Contratacion.h"
-//constructor por defecto
+
 Contratacion::Contratacion() {
-	// TODO Auto-generated constructor stub
-	this->costo=0;
-	this->empresa="";
+	this->costo = indefinido;
 	this->fecha.setFechaActual();
-	this->tipo_servicio=salud;
 }
-//constructor sobrecargado
+
 Contratacion::Contratacion(string empresa, TipoServicio tipo_servicio,short dia,short mes,short anio, float costo):fecha(dia,mes,anio){
 	this->empresa=empresa;
 	this->tipo_servicio=tipo_servicio;
 	this->costo=costo;
 }
-//constructor copia
+
 Contratacion::Contratacion(Contratacion &copia){
 	this->costo=copia.costo;
 	this->empresa=copia.empresa;
@@ -35,7 +32,15 @@ Fecha Contratacion::getFecha() {
 float Contratacion::getCosto() {
 	return this->costo;
 }
-//destructor
+
+void Contratacion::listarInfo() {
+	cout <<"Servicio: " << this->tipo_servicio<<endl;
+	cout << "Fecha: " << this->fecha.toString()<<endl;
+	cout << "Empresa: " << this->empresa<<endl;
+	cout << "Costo: $" << this->costo<<endl;
+
+}
+
 Contratacion::~Contratacion() {
 	// TODO Auto-generated destructor stub
 	this->fecha.~Fecha();

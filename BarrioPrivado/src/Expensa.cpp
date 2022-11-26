@@ -7,16 +7,24 @@
 
 #include "Expensa.h"
 
-Expensa::Expensa() {
-	// TODO Auto-generated constructor stub
+int Expensa::expensasCreadas = 0;
 
+Expensa::Expensa() {
+	this->mes = indefinido;
+	this->nroExpensa = indefinido;
+	this->pagado = false;
 }
-Expensa::Expensa(int mes, float monto, bool pagado) {
+Expensa::Expensa(int mes, float monto) {
 	this->mes = mes;
 	this->monto = monto;
-	this->pagado = pagado;
+	this->pagado = false;
+	expensasCreadas = expensasCreadas + 1;
+	this->nroExpensa = this->expensasCreadas ;
 }
 
+void Expensa::fuePagada() {
+	this->pagado = true;
+}
 Expensa::~Expensa() {
 	// TODO Auto-generated destructor stub
 }

@@ -1,12 +1,12 @@
 #include "Reserva.h"
 
-Reserva::Reserva(Fecha fReserva, int hInicio, int hFin, float precio, Persona *pReserva, Comunitario *lComunitario){
-	this->fecha = fReserva;
-	this->horaFin = hFin;
-	this->horaInicio = hInicio;
+Reserva::Reserva(Fecha fecha, int horaInicio, int horaFin, float precio, Persona *reservante, Lote *loteReservado){
+	this->fecha = fecha;
+	this->horaFin = horaFin;
+	this->horaInicio = horaInicio;
 	this->precio = precio;
-	this->lote_reservado = lComunitario;
-	this->reservante = pReserva;
+	this->lote_reservado = loteReservado;
+	this->reservante = reservante;
 }
 
 float Reserva::getPrecio() {
@@ -16,3 +16,8 @@ Fecha Reserva::getFecha() {
 	return this->fecha;
 }
 
+void Reserva::listarInfo() {
+	cout<<"Fecha: " << this->fecha.toString()<<endl;
+	cout<<"Reservante: " << this->reservante->getNombre()<<endl;
+	cout<<"Precio: $" << this->precio<<endl;
+}
